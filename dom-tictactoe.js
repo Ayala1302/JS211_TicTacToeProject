@@ -29,6 +29,10 @@ const handleClick = (element) => {
 const addMarker = (id) => {
   console.log(`We'll place a mark on square: ${id}`);
   // @TODO, Mix & Match.
+  console.log(`*** The current marker is:  ${currentMarker}. ***`);
+  console.log(
+    `Therefore, a  "${currentMarker}"  should be placed in the square with the id:  ${id}`
+  );
   // You will need the following pieces:
   document.getElementById(id).innerHTML = currentMarker;
   // = currentMarker
@@ -50,6 +54,7 @@ const updateBoard = (id) => {
   console.log(board);
 
   // @TODO, Your code here: use the above information to change the board variable(array of arrays)
+  board[row][column] = currentMarker;
   // HINT: in your browser open up the dev tools -> console
 };
 
@@ -81,13 +86,14 @@ const horizontalWin = () => {
 const verticalWin = () => {
   // @TODO, Your code here: to check for vertical wins
   if (
-    (board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X") ||
-    (board[0][0] == "O" && board[0][1] == "O" && board[0][2] == "O") ||
-    (board[1][0] == "X" && board[1][1] == "X" && board[1][2] == "X") ||
-    (board[1][0] == "O" && board[1][1] == "O" && board[1][2] == "O") ||
-    (board[2][0] == "X" && board[2][1] == "X" && board[2][2] == "X") ||
-    (board[2][0] == "O" && board[2][1] == "O" && board[2][2] == "O")
+    (board[0][0] == "X" && board[1][0] == "X" && board[2][0] == "X") ||
+    (board[0][0] == "O" && board[1][0] == "O" && board[2][0] == "O") ||
+    (board[0][1] == "X" && board[1][1] == "X" && board[2][1] == "X") ||
+    (board[0][1] == "O" && board[1][1] == "O" && board[2][1] == "O") ||
+    (board[0][2] == "X" && board[1][2] == "X" && board[2][2] == "X") ||
+    (board[0][2] == "O" && board[1][2] == "O" && board[2][2] == "O")
   ) {
+    console.log("verticalWin");
     return true;
   }
 };
@@ -128,6 +134,11 @@ const resetBoard = () => {
   }
 
   // @TODO, Your code here: make sure to reset the array of arrays to empty for a new game
+  board = [
+    ["", "", ""],
+    ["", "", ""],
+    ["", "", ""],
+  ];
 };
 
 // **BONUSES**
